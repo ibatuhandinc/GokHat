@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-slate-50 text-slate-800 font-sans antialiased;
+    background-image:
+      radial-gradient(ellipse 55% 40% at 12% 0%, rgba(14, 165, 233, 0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 45% 35% at 88% 8%, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* ── Kart ── */
+  .card {
+    @apply bg-white border border-slate-200/80 rounded-2xl shadow-card;
+  }
+  /* Geriye dönük uyumluluk (eski "glass" kullanımı için) */
+  .glass {
+    @apply bg-white border border-slate-200/80 rounded-2xl shadow-card;
+  }
+
+  /* ── Ana buton ── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           px-6 py-3 rounded-xl font-semibold text-white
+           bg-brand-600 hover:bg-brand-700
+           active:scale-[0.98]
+           shadow-lg shadow-brand-600/25 hover:shadow-brand-600/40
+           transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100;
+  }
+
+  /* ── İkincil buton ── */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           px-5 py-2.5 rounded-xl font-medium text-slate-700 bg-white
+           border border-slate-200 hover:border-slate-300 hover:bg-slate-50
+           active:scale-[0.98] transition-all duration-200;
+  }
+
+  /* ── Input ── */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl bg-white
+           border border-slate-200 text-slate-800 placeholder-slate-400
+           focus:outline-none focus:ring-2 focus:ring-brand-500/25 focus:border-brand-500
+           transition-all duration-200;
+  }
+
+  /* ── Label ── */
+  .field-label {
+    @apply block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5;
+  }
+
+  /* ── Badge'ler ── */
+  .badge-confirmed {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-emerald-50 text-emerald-700 border border-emerald-200;
+  }
+  .badge-cancelled {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-red-50 text-red-700 border border-red-200;
+  }
+  .badge-pending {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold
+           bg-amber-50 text-amber-700 border border-amber-200;
+  }
+
+  /* ── Koltuk stilleri ── */
+  .seat-available {
+    @apply w-9 h-9 rounded-lg cursor-pointer
+           border border-emerald-200 bg-emerald-50 text-emerald-700
+           text-xs font-semibold
+           flex items-center justify-center
+           hover:border-brand-500 hover:bg-brand-50 hover:text-brand-700
+           transition-all duration-150 hover:scale-110;
+  }
+  .seat-taken {
+    @apply w-9 h-9 rounded-lg cursor-not-allowed line-through
+           border border-slate-200 bg-slate-100 text-slate-300
+           text-xs font-semibold
+           flex items-center justify-center;
+  }
+  .seat-selected {
+    @apply w-9 h-9 rounded-lg cursor-pointer scale-110
+           border-2 border-brand-600 bg-brand-600 text-white
+           text-xs font-semibold
+           flex items-center justify-center
+           shadow-lg shadow-brand-600/40 transition-all;
+  }
+
+  /* ── Yüklenme iskeleti ── */
+  .shimmer {
+    background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply rounded-full bg-slate-300; }
+::-webkit-scrollbar-thumb:hover { @apply bg-slate-400; }
